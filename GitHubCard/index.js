@@ -93,6 +93,7 @@ function newCard(data){
   card.appendChild(cardImg);
   card.appendChild(cardInfo);
   cardInfo.appendChild(cardName);
+  cardInfo.appendChild(cardUsername);
   cardInfo.appendChild(cardLocation);
   cardInfo.appendChild(cardProfile);
   cardProfile.appendChild(cardHref);
@@ -104,12 +105,12 @@ function newCard(data){
   cardImg.src = data.avatar_url;
   cardName.textContent = data.name;
   cardUsername.textContent = data.login;
-  cardLocation.textContent = data.location;
+  cardLocation.textContent = `Location: ${data.location}`;
   cardProfile.textContent = data.html_url;
   cardHref.href = data.html_url;
-  cardFollowers.textContent = data.followers;
-  cardFollowing.textContent = data.following;
-  cardBio.textContent = data.bio;
+  cardFollowers.textContent = `Followers: ${data.followers}`;
+  cardFollowing.textContent = `Following: ${data.following}`;
+  cardBio.textContent = `Bio: ${data.bio}`;
 
   return card;
 }
