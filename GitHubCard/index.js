@@ -4,10 +4,19 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+
+const cards = document.querySelector('.cards');
+
 axios.get('https://api.github.com/users/shweps13')
-  .then( (response) =>{
-    console.log(response)
+  .then( (response) => {
+    console.log(response);
+    const dataObj = response.data;
+    console.log(dataObj);
+    const userCard = newCard(dataObj);
+    console.log(userCard);
+    cards.appendChild(userCard);
   })
+  .catch(error => console.log('Here is some troubles', error));
 
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -20,6 +29,8 @@ axios.get('https://api.github.com/users/shweps13')
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
+
+
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -52,7 +63,11 @@ const followersArray = [];
 // </div>
 
 
-function card(data){
+
+
+
+
+function newCard(data){
   
   // Creating elements
   const card = document.createElement('div');
@@ -75,16 +90,28 @@ function card(data){
   cardUsername.classList.add('username');
 
   // Positioning here
-  card.appendChild.(cardImg);
-  card.appendChild.(cardInfo);
-  cardInfo.appendChild.(cardName);
-  cardInfo.appendChild.(cardLocation);
-  cardInfo.appendChild.(cardProfile);
-  cardProfile.appendChild.(cardHref);
-  cardInfo.appendChild.(cardFollowers);
-  cardInfo.appendChild.(cardFollowing);
-  cardInfo.appendChild.(cardBio);
+  card.appendChild(cardImg);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(cardName);
+  cardInfo.appendChild(cardLocation);
+  cardInfo.appendChild(cardProfile);
+  cardProfile.appendChild(cardHref);
+  cardInfo.appendChild(cardFollowers);
+  cardInfo.appendChild(cardFollowing);
+  cardInfo.appendChild(cardBio);
 
+  // Put data inside
+  cardImg.src = data.avatar_url;
+  cardName.textContent = data.name;
+  cardUsername.textContent = data.login;
+  cardLocation.textContent = data.location;
+  cardProfile.textContent = data.html_url;
+  cardHref.href = data.html_url;
+  cardFollowers.textContent = data.followers;
+  cardFollowing.textContent = data.following;
+  cardBio.textContent = data.bio;
+
+  return card;
 }
 
 
