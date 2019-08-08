@@ -60,7 +60,8 @@ followersArray.forEach((follower) => {
 
 
 // Trying to get the list of followers
-axios.get('https://api.github.com/users/shweps13/followers')
+function getFollowers(user) {
+axios.get(`https://api.github.com/users/${user}/followers`)
   .then( (response) => {
     console.log(response);
     const dataObj = response.data;
@@ -76,7 +77,8 @@ axios.get('https://api.github.com/users/shweps13/followers')
     let result = dataObj.map(({ login }) => login)
     console.log(result)
   })
-
+}
+let followersNext = getFollowers('shweps13')
 
 // /* Step 3: Create a function that accepts a single object as its only argument,
 //           Using DOM methods and properties, create a component that will return the following DOM element:
