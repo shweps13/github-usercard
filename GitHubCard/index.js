@@ -59,6 +59,25 @@ followersArray.forEach((follower) => {
 })
 
 
+// Trying to get the list of followers
+axios.get('https://api.github.com/users/shweps13/followers')
+  .then( (response) => {
+    console.log(response);
+    const dataObj = response.data;
+    console.log(dataObj);
+    // function getFields(input, field) {
+    //   var output = [];
+    //   for (var i=0; i < input.length ; ++i)
+    //       output.push(input[i][field]);
+    //   return output;
+    // }
+    // let result = getFields(dataObj, "login");
+    // console.log(result);
+    let result = dataObj.map(({ login }) => login)
+    console.log(result)
+  })
+
+
 // /* Step 3: Create a function that accepts a single object as its only argument,
 //           Using DOM methods and properties, create a component that will return the following DOM element:
 
