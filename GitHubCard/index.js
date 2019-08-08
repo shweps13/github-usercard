@@ -89,6 +89,18 @@ function newCard(data){
   cardName.classList.add('name');
   cardUsername.classList.add('username');
 
+ // Put data inside
+ cardImg.src = data.avatar_url;
+ cardName.textContent = data.name;
+ cardUsername.textContent = data.login;
+ cardLocation.textContent = `Location: ${data.location}`;
+ cardProfile.textContent = `Profile: `;
+ cardHref.href = data.html_url;
+ cardHref.textContent = `${data.html_url}`;
+ cardFollowers.textContent = `Followers: ${data.followers}`;
+ cardFollowing.textContent = `Following: ${data.following}`;
+ cardBio.textContent = `Bio: ${data.bio}`;
+
   // Positioning here
   card.appendChild(cardImg);
   card.appendChild(cardInfo);
@@ -101,16 +113,7 @@ function newCard(data){
   cardInfo.appendChild(cardFollowing);
   cardInfo.appendChild(cardBio);
 
-  // Put data inside
-  cardImg.src = data.avatar_url;
-  cardName.textContent = data.name;
-  cardUsername.textContent = data.login;
-  cardLocation.textContent = `Location: ${data.location}`;
-  cardProfile.textContent = data.html_url;
-  cardHref.href = data.html_url;
-  cardFollowers.textContent = `Followers: ${data.followers}`;
-  cardFollowing.textContent = `Following: ${data.following}`;
-  cardBio.textContent = `Bio: ${data.bio}`;
+ 
 
   return card;
 }
