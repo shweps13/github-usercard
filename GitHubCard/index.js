@@ -76,6 +76,7 @@ axios.get(`https://api.github.com/users/${user}/followers`)
     // console.log(result);
     let result = dataObj.map(({ login }) => login)
     console.log(result)
+    return result;
   })
 }
 let followersNext = getFollowers('shweps13')
@@ -117,6 +118,7 @@ function newCard(data){
   const cardFollowers = document.createElement('p');
   const cardFollowing = document.createElement('p');
   const cardBio = document.createElement('p');
+  const calendar = document.createElement('img');
 
   // Styles here
   card.classList.add('card');
@@ -124,7 +126,8 @@ function newCard(data){
   cardInfo.classList.add('card-info');
   cardName.classList.add('name');
   cardUsername.classList.add('username');
-
+  calendar.classList.add('calendar');
+  
  // Put data inside
  cardImg.src = data.avatar_url;
  cardName.textContent = data.name;
@@ -136,6 +139,7 @@ function newCard(data){
  cardFollowers.textContent = `Followers: ${data.followers}`;
  cardFollowing.textContent = `Following: ${data.following}`;
  cardBio.textContent = `Bio: ${data.bio}`;
+ calendar.src = `http://ghchart.rshah.org/${data.login}`
 
   // Positioning here
   card.appendChild(cardImg);
@@ -148,7 +152,7 @@ function newCard(data){
   cardInfo.appendChild(cardFollowers);
   cardInfo.appendChild(cardFollowing);
   cardInfo.appendChild(cardBio);
-
+  cardInfo.appendChild(calendar);
  
 
   return card;
